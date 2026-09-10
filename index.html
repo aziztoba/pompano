@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="You are invited to celebrate the engagement of Aziz and Rahma on 19 September 2026."
+    />
+    <meta name="theme-color" content="#8e2f4f" />
+    <title>Aziz & Rahma — Our Next Chapter</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%237b2846'/%3E%3Ctext x='50' y='63' text-anchor='middle' font-size='44' fill='%23f4c9d2'%3EAR%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Italiana&family=Parisienne&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="petal-field" aria-hidden="true"></div>
+
+    <main>
+      <section class="intro" id="intro" aria-labelledby="intro-title">
+        <p class="eyebrow">A little secret is waiting for you</p>
+        <h1 id="intro-title" class="sr-only">Engagement invitation for Aziz and Rahma</h1>
+
+        <button class="envelope" id="openInvitation" aria-label="Open the invitation">
+          <span class="envelope-back"></span>
+          <span class="letter">
+            <span class="letter-mark">A <i>&</i> R</span>
+            <span class="letter-hint">for someone special</span>
+          </span>
+          <span class="envelope-front"></span>
+          <span class="envelope-flap"></span>
+          <span class="wax-seal" aria-hidden="true">AR</span>
+        </button>
+
+        <button class="open-label" id="openLabel" type="button">Break the seal</button>
+      </section>
+
+      <div class="invitation" id="invitation" aria-hidden="true">
+        <section class="hero section-card" aria-labelledby="coupleNames">
+          <span class="tiny-heart" aria-hidden="true">♥</span>
+          <p class="script reveal-item">The secret is out…</p>
+          <h2 id="coupleNames" class="names reveal-item">Aziz <span>&</span> Rahma</h2>
+          <p class="announcement reveal-item">are getting engaged</p>
+          <div class="line-flower reveal-item" aria-hidden="true">
+            <span></span><b>✦</b><span></span>
+          </div>
+          <p class="lead reveal-item">
+            Two hearts chose forever.<br />Come celebrate the beginning of their most beautiful chapter.
+          </p>
+          <a class="scroll-cue reveal-item" href="#details">
+            <span>Discover the details</span>
+            <span aria-hidden="true">↓</span>
+          </a>
+        </section>
+
+        <section class="details section-card" id="details" aria-labelledby="detailsTitle">
+          <p class="section-kicker">Save the evening</p>
+          <h2 id="detailsTitle">Our next chapter begins</h2>
+
+          <div class="date-lockup" aria-label="Saturday, 19 September 2026 at 6 PM">
+            <span class="date-side">Saturday</span>
+            <strong>19</strong>
+            <span class="date-side">September<br />2026</span>
+          </div>
+
+          <div class="detail-grid">
+            <article>
+              <span class="detail-icon" aria-hidden="true">◷</span>
+              <h3>When</h3>
+              <p>6:00 in the evening</p>
+            </article>
+            <article>
+              <span class="detail-icon" aria-hidden="true">⌖</span>
+              <h3>Where</h3>
+              <p>Viola Hall<br />Port Said</p>
+            </article>
+          </div>
+
+          <div class="detail-actions">
+            <button class="text-button" id="addCalendar" type="button">Add to calendar</button>
+            <a
+              class="text-button"
+              href="https://www.google.com/maps/search/?api=1&query=Viola+Hall+Port+Said"
+              target="_blank"
+              rel="noreferrer"
+            >Open map</a>
+          </div>
+        </section>
+
+        <section class="countdown section-card" aria-labelledby="countdownTitle">
+          <p class="script">Counting every heartbeat</p>
+          <h2 id="countdownTitle">Until we celebrate together</h2>
+          <div class="countdown-grid" aria-live="polite">
+            <div><strong id="days">000</strong><span>Days</span></div>
+            <div><strong id="hours">00</strong><span>Hours</span></div>
+            <div><strong id="minutes">00</strong><span>Minutes</span></div>
+            <div><strong id="seconds">00</strong><span>Seconds</span></div>
+          </div>
+        </section>
+
+        <section class="rsvp section-card" id="rsvp" aria-labelledby="rsvpTitle">
+          <p class="section-kicker">One last question</p>
+          <h2 id="rsvpTitle">Will you join our<br /><em>next chapter?</em></h2>
+          <p class="rsvp-copy">There is only one answer our hearts are hoping for.</p>
+
+          <div class="answer-area" id="answerArea">
+            <button class="yes-button" id="yesButton" type="button">Absolutely, yes! <span>♥</span></button>
+            <button class="no-button" id="noButton" type="button" tabindex="-1" aria-hidden="true">No</button>
+          </div>
+
+          <p class="no-tease" id="noTease" aria-live="polite"></p>
+
+          <div class="accepted" id="accepted" aria-live="polite">
+            <span aria-hidden="true">♥</span>
+            <h3>We knew you’d say yes!</h3>
+            <p>See you on 19 September 2026.</p>
+          </div>
+        </section>
+
+        <footer>
+          <p class="script">With love,</p>
+          <p>Aziz & Rahma</p>
+          <span>19 · 09 · 2026</span>
+        </footer>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
