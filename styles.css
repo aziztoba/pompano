@@ -771,18 +771,19 @@ h2 em {
   flex-wrap: wrap;
 }
 .map-link {
-  display: inline;
+  display: inline-block;
   padding: 10px 0;
   border: 0;
   color: var(--wine);
   font-size: 15px;
   font-weight: 600;
   line-height: 1.2;
-  text-underline-offset: 5px;
-  text-decoration-thickness: 1px;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 3px;
 }
 .map-link span {
-  margin-left: 8px;
+  margin-left: 4px;
   font-size: inherit;
 }
 .calendar-wrap {
@@ -1026,6 +1027,27 @@ h2 em {
   font-size: 11px;
   text-align: center;
 }
+.music-player-hidden {
+  position: fixed;
+  z-index: -1;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+.music-player-hidden iframe {
+  width: 1px;
+  height: 1px;
+}
+.music-status-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
 /* The finale is a playful interaction, not a submitted attendance record. */
 .rsvp {
   position: relative;
@@ -1069,8 +1091,8 @@ h2 em {
 }
 .answer-area {
   position: relative;
-  width: min(100%, 540px);
-  height: 210px;
+  width: min(100%, 680px);
+  height: 280px;
   margin: 16px auto 0;
 }
 .yes-button {
@@ -1752,7 +1774,7 @@ footer button {
     margin-bottom: 20px;
   }
   .answer-area {
-    height: 230px;
+    height: 270px;
   }
   .yes-button {
     top: 75px;
