@@ -408,15 +408,24 @@ window.onYouTubeIframeAPIReady = () => {
     width: "100%",
     height: "240",
     videoId: SONG_ID,
-    playerVars: { controls: 1, playsinline: 1, rel: 0, loop: 1, playlist: SONG_ID },
+    playerVars: {
+      autoplay: 1,
+      controls: 1,
+      playsinline: 1,
+      rel: 0,
+      loop: 1,
+      playlist: SONG_ID,
+    },
     events: {
       onReady: (event) => {
         musicReady = true;
         event.target.setVolume(45);
+        event.target.mute();
+        event.target.playVideo();
         $("#musicStatus").textContent = opened
           ? "Our song is ready."
           : "Music starts when you open the letter.";
-        if (opened && musicDesired) startOfficialTrack();
+        if ((opened || opening) && musicDesired) startOfficialTrack();
       },
       onStateChange: (event) => {
         if (event.data === window.YT.PlayerState.PLAYING)
