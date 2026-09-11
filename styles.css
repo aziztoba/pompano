@@ -103,8 +103,9 @@ a:focus-visible {
   font-size: 17px;
 }
 .button-icon {
-  width: 19px;
-  height: 19px;
+  display: block;
+  width: 19px !important;
+  height: 19px !important;
   flex: 0 0 19px;
 }
 .primary {
