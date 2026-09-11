@@ -43,6 +43,7 @@ a {
 }
 button {
   cursor: pointer;
+  border-radius: 999px;
 }
 a {
   color: inherit;
@@ -81,13 +82,13 @@ a:focus-visible {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 32px;
-  min-height: 52px;
+  gap: 12px;
+  min-height: 58px;
   border: 1px solid transparent;
-  padding: 15px 25px;
-  border-radius: 4px;
-  font-size: 12px;
-  font-weight: 500;
+  padding: 16px 28px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
   text-decoration: none;
   transition:
     transform 0.25s,
@@ -99,7 +100,7 @@ a:focus-visible {
   box-shadow: 0 7px 20px #60102820;
 }
 .button span {
-  font-size: 18px;
+  font-size: 17px;
 }
 .primary {
   background: var(--wine);
@@ -107,6 +108,14 @@ a:focus-visible {
 }
 .primary:hover {
   background: var(--wine-dark);
+}
+.ghost-button {
+  color: var(--wine);
+  border-color: #9e5266;
+  background: transparent;
+}
+.ghost-button:hover {
+  background: #fffaf3;
 }
 .masthead {
   position: absolute;
@@ -762,13 +771,21 @@ h2 em {
   flex-wrap: wrap;
 }
 .map-link {
-  font-size: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 58px;
+  padding: 16px 28px;
+  border: 1px solid #9e5266;
+  border-radius: 999px;
+  color: var(--wine);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.2;
   text-underline-offset: 5px;
-  line-height: 2;
-  padding: 10px 0;
 }
 .map-link span {
-  margin-left: 8px;
+  font-size: 17px;
 }
 .calendar-wrap {
   position: relative;
@@ -927,6 +944,90 @@ h2 em {
   color: var(--muted);
   margin-top: 35px;
 }
+.soundtrack {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 0.9fr;
+  align-items: center;
+  gap: 12%;
+  overflow: hidden;
+  color: var(--paper);
+  background: var(--wine-dark);
+}
+.soundtrack::before {
+  content: "♪";
+  position: absolute;
+  right: 8%;
+  top: 8%;
+  color: #e9b2bc35;
+  font-family: var(--serif);
+  font-size: 180px;
+  line-height: 1;
+}
+.soundtrack h2,
+.soundtrack h2 em {
+  color: var(--paper);
+}
+.soundtrack-copy > p:not(.eyebrow) {
+  margin: 30px 0 20px;
+  font-family: var(--serif);
+  font-size: 24px;
+  line-height: 1.35;
+}
+.soundtrack-copy > p span {
+  color: #e8b6c0;
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.soundtrack-copy > a {
+  color: #efcbd1;
+  font-size: 15px;
+  font-weight: 600;
+  text-underline-offset: 6px;
+}
+.soundtrack-copy > a span {
+  margin-left: 8px;
+  font-size: 17px;
+}
+.record-player {
+  position: relative;
+  z-index: 1;
+  padding: 22px;
+  color: var(--ink);
+  border: 1px solid #f2d7d9;
+  border-radius: 28px;
+  background: var(--paper);
+  box-shadow: 8px 16px 40px #3108144d;
+  transform: rotate(2deg);
+}
+.record-tape {
+  display: block;
+  width: 78px;
+  height: 14px;
+  margin: -35px auto 12px;
+  background: #d2919d99;
+  transform: rotate(-4deg);
+}
+.youtube-player {
+  overflow: hidden;
+  border-radius: 18px;
+  aspect-ratio: 16 / 9;
+  background: #260914;
+}
+.youtube-player iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+#musicStatus {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+  text-align: center;
+}
 /* The finale is a playful interaction, not a submitted attendance record. */
 .rsvp {
   position: relative;
@@ -982,8 +1083,9 @@ h2 em {
   z-index: 2;
   background: var(--paper);
   color: var(--wine);
-  min-width: 214px;
-  border-radius: 4px;
+  min-width: 220px;
+  border-radius: 999px;
+  font-size: 15px;
 }
 .yes-button:hover {
   transform: translateX(-50%) translateY(-3px);
@@ -993,14 +1095,14 @@ h2 em {
   position: absolute;
   top: 139px;
   left: calc(50% - 48px);
-  min-width: 96px;
-  min-height: 40px;
-  padding: 10px 14px;
+  min-width: 220px;
+  min-height: 58px;
+  padding: 16px 28px;
   border: 1px solid #e5acb280;
   color: #f4d9de;
   background: var(--wine);
-  border-radius: 4px;
-  font-size: 11px;
+  border-radius: 999px;
+  font-size: 15px;
   white-space: nowrap;
 }
 .no-button.is-convinced {
@@ -1555,12 +1657,14 @@ footer button {
     gap: 14px;
   }
   .detail-actions .button {
-    gap: 15px;
-    padding: 14px 18px;
-    font-size: 11px;
+    gap: 10px;
+    padding: 15px 20px;
+    font-size: 14px;
   }
   .map-link {
-    font-size: 9px;
+    min-height: 54px;
+    padding: 15px 20px;
+    font-size: 14px;
   }
   .calendar-wrap {
     width: 93%;
@@ -1609,6 +1713,20 @@ footer button {
   .countdown-footnote {
     font-size: 10px;
   }
+  .soundtrack {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .soundtrack-copy > p:not(.eyebrow) {
+    font-size: 22px;
+  }
+  .soundtrack-copy > a {
+    font-size: 14px;
+  }
+  .record-player {
+    width: min(100%, 420px);
+    justify-self: center;
+  }
   .rsvp {
     padding: 75px 8%;
     min-height: 740px;
@@ -1642,10 +1760,13 @@ footer button {
   }
   .yes-button {
     top: 75px;
-    min-width: 200px;
+    min-width: 220px;
+    font-size: 15px;
   }
   .no-button {
     top: 150px;
+    min-width: 220px;
+    font-size: 15px;
   }
   .keepsake-ticket {
     grid-template-columns: 1fr 63px;
