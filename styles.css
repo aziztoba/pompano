@@ -43,7 +43,6 @@ a {
 }
 button {
   cursor: pointer;
-  border-radius: 999px;
 }
 a {
   color: inherit;
@@ -82,13 +81,13 @@ a:focus-visible {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  min-height: 58px;
+  gap: 32px;
+  min-height: 52px;
   border: 1px solid transparent;
-  padding: 16px 28px;
-  border-radius: 999px;
-  font-size: 15px;
-  font-weight: 600;
+  padding: 15px 25px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
   text-decoration: none;
   transition:
     transform 0.25s,
@@ -100,7 +99,7 @@ a:focus-visible {
   box-shadow: 0 7px 20px #60102820;
 }
 .button span {
-  font-size: 17px;
+  font-size: 18px;
 }
 .primary {
   background: var(--wine);
@@ -108,14 +107,6 @@ a:focus-visible {
 }
 .primary:hover {
   background: var(--wine-dark);
-}
-.ghost-button {
-  color: var(--wine);
-  border-color: #9e5266;
-  background: transparent;
-}
-.ghost-button:hover {
-  background: #fffaf3;
 }
 .masthead {
   position: absolute;
@@ -730,91 +721,6 @@ h2 em {
   color: var(--rose);
   transform: rotate(18deg);
 }
-.soundtrack {
-  position: relative;
-  display: grid;
-  grid-template-columns: 0.75fr 1.25fr;
-  align-items: center;
-  gap: 12%;
-  overflow: hidden;
-  color: var(--paper);
-  background: var(--wine);
-}
-.soundtrack::before {
-  position: absolute;
-  right: -90px;
-  bottom: -115px;
-  width: 300px;
-  height: 300px;
-  border: 1px solid #eeb9c74d;
-  border-radius: 50%;
-  content: "";
-}
-.soundtrack-copy,
-.record-player {
-  position: relative;
-  z-index: 1;
-}
-.soundtrack h2,
-.soundtrack h2 em {
-  color: var(--paper);
-}
-.soundtrack-copy > p:not(.eyebrow) {
-  margin: 30px 0 20px;
-  font-family: var(--serif);
-  font-size: 24px;
-  line-height: 1.35;
-}
-.soundtrack-copy > p span {
-  color: #e8b6c0;
-  font-family: var(--sans);
-  font-size: 10px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-}
-.soundtrack-copy > a {
-  color: #efcbd1;
-  font-size: 10px;
-  text-underline-offset: 6px;
-}
-.soundtrack-copy > a span {
-  margin-left: 8px;
-}
-.record-player {
-  padding: 22px;
-  color: var(--ink);
-  border: 1px solid #f2d7d9;
-  border-radius: 26px;
-  background: var(--paper);
-  box-shadow: 8px 16px 40px #3108144d;
-  transform: rotate(2deg);
-}
-.record-tape {
-  position: absolute;
-  z-index: 2;
-  top: -14px;
-  left: calc(50% - 45px);
-  width: 90px;
-  height: 28px;
-  background: #efb9c2b3;
-  transform: rotate(-5deg);
-}
-.youtube-player,
-.youtube-player iframe {
-  display: block;
-  width: 100%;
-  min-height: 200px;
-  aspect-ratio: 16 / 9;
-  border: 0;
-  border-radius: 18px;
-  background: #2c0914;
-}
-.record-player > p {
-  margin: 14px 0 0;
-  color: var(--muted);
-  font-size: 10px;
-  text-align: center;
-}
 .details {
   display: grid;
   grid-template-columns: 1fr 0.9fr;
@@ -856,8 +762,10 @@ h2 em {
   flex-wrap: wrap;
 }
 .map-link {
-  font-size: 15px;
-  text-decoration: none;
+  font-size: 10px;
+  text-underline-offset: 5px;
+  line-height: 2;
+  padding: 10px 0;
 }
 .map-link span {
   margin-left: 8px;
@@ -1074,8 +982,8 @@ h2 em {
   z-index: 2;
   background: var(--paper);
   color: var(--wine);
-  min-width: 220px;
-  border-radius: 999px;
+  min-width: 214px;
+  border-radius: 4px;
 }
 .yes-button:hover {
   transform: translateX(-50%) translateY(-3px);
@@ -1084,16 +992,15 @@ h2 em {
 .no-button {
   position: absolute;
   top: 139px;
-  left: calc(50% - 110px);
-  min-width: 220px;
-  min-height: 58px;
-  padding: 16px 28px;
+  left: calc(50% - 48px);
+  min-width: 96px;
+  min-height: 40px;
+  padding: 10px 14px;
   border: 1px solid #e5acb280;
   color: #f4d9de;
   background: var(--wine);
-  border-radius: 999px;
-  font-size: 15px;
-  font-weight: 600;
+  border-radius: 4px;
+  font-size: 11px;
   white-space: nowrap;
 }
 .no-button.is-convinced {
@@ -1513,9 +1420,7 @@ footer button {
     bottom: 22px;
   }
   .intro .button {
-    min-height: 58px;
-    padding: 16px 24px;
-    font-size: 15px;
+    font-size: 11px;
   }
   .intro-hint {
     padding: 5px 10px;
@@ -1616,16 +1521,6 @@ footer button {
     grid-template-columns: 1fr;
     gap: 14px;
   }
-  .soundtrack {
-    grid-template-columns: 1fr;
-    gap: 48px;
-  }
-  .record-player {
-    width: 100%;
-    padding: 14px;
-    border-radius: 22px;
-    transform: rotate(1deg);
-  }
   .note-body > p {
     font-size: 25px;
   }
@@ -1660,14 +1555,12 @@ footer button {
     gap: 14px;
   }
   .detail-actions .button {
-    flex: 1 1 100%;
-    gap: 10px;
-    min-height: 58px;
-    padding: 16px 20px;
-    font-size: 15px;
+    gap: 15px;
+    padding: 14px 18px;
+    font-size: 11px;
   }
   .map-link {
-    font-size: 15px;
+    font-size: 9px;
   }
   .calendar-wrap {
     width: 93%;
@@ -1745,14 +1638,14 @@ footer button {
     margin-bottom: 20px;
   }
   .answer-area {
-    height: 255px;
+    height: 230px;
   }
   .yes-button {
     top: 75px;
-    min-width: 220px;
+    min-width: 200px;
   }
   .no-button {
-    top: 153px;
+    top: 150px;
   }
   .keepsake-ticket {
     grid-template-columns: 1fr 63px;

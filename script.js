@@ -46,7 +46,6 @@ function scatterPetals(amount = 24) {
 function openCard() {
   if (opened || opening) return;
   opening = true;
-  if (musicDesired) startOfficialTrack();
   intro.classList.add("opening");
   setTimeout(
     () => {
@@ -378,100 +377,86 @@ $("#saveKeepsake").addEventListener("click", () => {
   showToast("A little memory, yours to keep. ♥");
 });
 
-// The official YouTube embed keeps the requested song licensed and attributed.
-// Browsers permit audible playback only after a guest interacts with the page,
-// so music is armed by default and starts as the letter opens.
-const SONG_ID = "MlThQTo6D8A";
-let youtubePlayer;
-let musicReady = false;
-let musicDesired = true;
+// A tiny original music-box melody. Audio starts only after a deliberate tap.
+let audioContext;
+let musicTimer;
+let musicOn = false;
+let musicBusy = false;
+let noteIndex = 0;
+const melody = [
+  523.25, 659.25, 783.99, 659.25, 587.33, 698.46, 880, 698.46, 523.25, 659.25,
+  783.99, 1046.5, 880, 783.99, 659.25, 587.33,
+];
 
+function playNote(frequency, when, volume = 0.045) {
+  const oscillator = audioContext.createOscillator();
+  const gain = audioContext.createGain();
+  oscillator.type = "sine";
+  oscillator.frequency.value = frequency;
+  gain.gain.setValueAtTime(0, when);
+  gain.gain.linearRampToValueAtTime(volume, when + 0.025);
+  gain.gain.exponentialRampToValueAtTime(0.001, when + 2.8);
+  oscillator.connect(gain);
+  gain.connect(audioContext.destination);
+  oscillator.start(when);
+  oscillator.stop(when + 3);
+  oscillator.onended = () => {
+    oscillator.disconnect();
+    gain.disconnect();
+  };
+}
+function melodyStep() {
+  if (!musicOn || document.hidden || audioContext.state !== "running") return;
+  const when = audioContext.currentTime;
+  playNote(melody[noteIndex % melody.length], when);
+  if (noteIndex % 4 === 0)
+    playNote(melody[noteIndex % melody.length] / 2, when, 0.028);
+  noteIndex += 1;
+}
 function updateSoundButton() {
-  $("#soundToggle").setAttribute("aria-pressed", String(musicDesired));
+  $("#soundToggle").setAttribute("aria-pressed", String(musicOn));
   $("#soundToggle").setAttribute(
     "aria-label",
-    musicDesired ? "Turn off Until I Found You" : "Turn on Until I Found You",
+    musicOn ? "Turn off soft music" : "Turn on soft music",
   );
-  $("#soundLabel").textContent = musicDesired ? "Music on" : "Music off";
+  $("#soundLabel").textContent = musicOn ? "Sound on" : "Sound off";
 }
-
-function startOfficialTrack() {
-  if (!musicDesired) return;
-  if (!musicReady || !youtubePlayer) {
-    $("#musicStatus").textContent = "Getting our song ready…";
-    return;
-  }
-  youtubePlayer.setVolume(45);
-  youtubePlayer.unMute();
-  youtubePlayer.playVideo();
-  $("#musicStatus").textContent =
-    "Now playing: Until I Found You · Stephen Sanchez";
-}
-
-window.onYouTubeIframeAPIReady = () => {
-  youtubePlayer = new window.YT.Player("youtubePlayer", {
-    width: "100%",
-    height: "240",
-    videoId: SONG_ID,
-    playerVars: {
-      controls: 1,
-      playsinline: 1,
-      rel: 0,
-      loop: 1,
-      playlist: SONG_ID,
-    },
-    events: {
-      onReady: (event) => {
-        musicReady = true;
-        event.target.setVolume(45);
-        $("#musicStatus").textContent = opened
-          ? "Our song is ready."
-          : "Music starts when you open the letter.";
-        if (opened && musicDesired) startOfficialTrack();
-      },
-      onStateChange: (event) => {
-        if (event.data === window.YT.PlayerState.PLAYING) {
-          $("#musicStatus").textContent =
-            "Now playing: Until I Found You · Stephen Sanchez";
-        }
-        if (event.data === window.YT.PlayerState.PAUSED && !document.hidden) {
-          musicDesired = false;
-          updateSoundButton();
-          $("#musicStatus").textContent = "Our song is paused.";
-        }
-      },
-      onError: () => {
-        $("#musicStatus").textContent =
-          "The player could not load. Use the official audio link.";
-      },
-    },
-  });
-};
-
-const youtubeApi = document.createElement("script");
-youtubeApi.src = "https://www.youtube.com/iframe_api";
-youtubeApi.async = true;
-youtubeApi.addEventListener("error", () => {
-  $("#musicStatus").textContent =
-    "The player could not load. Use the official audio link.";
-});
-document.head.append(youtubeApi);
-
-$("#soundToggle").addEventListener("click", () => {
-  musicDesired = !musicDesired;
-  updateSoundButton();
-  if (!musicReady || !youtubePlayer) return;
-  if (musicDesired) {
-    if (opened) startOfficialTrack();
-  } else {
-    youtubePlayer.pauseVideo();
-    $("#musicStatus").textContent = "Our song is paused.";
+$("#soundToggle").addEventListener("click", async () => {
+  if (musicBusy) return;
+  musicBusy = true;
+  try {
+    const Audio = window.AudioContext || window.webkitAudioContext;
+    if (!Audio) throw new Error("Audio unavailable");
+    audioContext ||= new Audio();
+    if (musicOn) {
+      musicOn = false;
+      clearInterval(musicTimer);
+      await audioContext.suspend();
+    } else {
+      await audioContext.resume();
+      musicOn = true;
+      melodyStep();
+      musicTimer = setInterval(melodyStep, 900);
+    }
+    updateSoundButton();
+  } catch {
+    musicOn = false;
+    clearInterval(musicTimer);
+    updateSoundButton();
+    showToast("Sound is unavailable in this browser. The love is still here.");
+  } finally {
+    musicBusy = false;
   }
 });
-
 document.addEventListener("visibilitychange", () => {
   if (!document.hidden) updateCountdown();
-  if (!musicReady || !youtubePlayer || !musicDesired) return;
-  if (document.hidden) youtubePlayer.pauseVideo();
-  else if (opened) startOfficialTrack();
+  if (!audioContext || !musicOn) return;
+  const operation = document.hidden
+    ? audioContext.suspend()
+    : audioContext.resume();
+  operation.catch(() => {
+    musicOn = false;
+    clearInterval(musicTimer);
+    updateSoundButton();
+  });
 });
