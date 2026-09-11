@@ -102,6 +102,11 @@ a:focus-visible {
 .button span {
   font-size: 17px;
 }
+.button-icon {
+  width: 19px;
+  height: 19px;
+  flex: 0 0 19px;
+}
 .primary {
   background: var(--wine);
   color: var(--paper);
@@ -473,7 +478,9 @@ a:focus-visible {
   letter-spacing: 1.5px;
 }
 .little-star {
-  font-size: 17px;
+  display: inline-block;
+  width: 17px;
+  height: 17px;
   vertical-align: middle;
   margin-right: 7px;
 }
@@ -676,6 +683,12 @@ a:focus-visible {
   flex-shrink: 0;
   font-size: 9px;
   letter-spacing: 2px;
+}
+.strip-spark {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 14px;
+  color: #f3cbd1;
 }
 .section-pad {
   padding: 110px max(7%, calc((100vw - 1150px) / 2));

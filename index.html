@@ -93,6 +93,9 @@
             stroke-linecap="round"
           />
         </symbol>
+        <symbol id="spark" viewBox="0 0 40 40">
+          <path d="M20 2L23 15L38 20L23 23L20 38L17 23L2 20L17 15Z" fill="currentColor" />
+        </symbol>
       </defs>
     </svg>
     <div class="petal-field" aria-hidden="true"></div>
@@ -152,7 +155,7 @@
           </button>
         </div>
         <button class="button primary open-label" id="openLabel" type="button">
-          Untie a little happiness <span aria-hidden="true">↗</span>
+          Untie a little happiness <svg class="button-icon" aria-hidden="true"><use href="#arrow" /></svg>
         </button>
         <p class="intro-hint">Pull the ribbon, or tap to open.</p>
       </div>
@@ -166,7 +169,7 @@
       <section class="hero" id="home" aria-labelledby="coupleNames">
         <div class="hero-copy">
           <p class="eyebrow">
-            <span class="little-star" aria-hidden="true">✳</span> YOU'RE
+            <svg class="little-star" aria-hidden="true"><use href="#spark" /></svg> YOU'RE
             INVITED TO OUR ENGAGEMENT
           </p>
           <p class="hero-prelude">A very lovely</p>
@@ -176,7 +179,7 @@
             <em>each other.</em>
           </p>
           <a href="#details" class="button primary"
-            >Be part of our story <span aria-hidden="true">↗</span></a
+            >Be part of our story <svg class="button-icon" aria-hidden="true"><use href="#arrow" /></svg></a
           >
           <span class="handwritten hero-note"
             >and bring your happy tears.<svg aria-hidden="true">
@@ -211,9 +214,9 @@
         </div>
       </section>
       <div class="love-strip" aria-hidden="true">
-        <span>A LITTLE LOVE</span>✳<span>A BIG YES</span>✳<span
+        <span>A LITTLE LOVE</span><svg class="strip-spark" aria-hidden="true"><use href="#spark" /></svg><span>A BIG YES</span><svg class="strip-spark" aria-hidden="true"><use href="#spark" /></svg><span
           >OUR FAVOURITE PEOPLE</span
-        >✳<span>ONE UNFORGETTABLE EVENING</span>✳
+        ><svg class="strip-spark" aria-hidden="true"><use href="#spark" /></svg><span>ONE UNFORGETTABLE EVENING</span><svg class="strip-spark" aria-hidden="true"><use href="#spark" /></svg>
       </div>
       <section
         class="love-note section-pad"
@@ -269,13 +272,13 @@
           </dl>
           <div class="detail-actions">
             <button class="button primary" id="addCalendar" type="button">
-              Save our date <span aria-hidden="true">＋</span></button
+              Save our date <span aria-hidden="true">+</span></button
             ><a
               class="map-link"
               href="https://www.google.com/maps/search/?api=1&query=Viola+Hall+Port+Said"
               target="_blank"
               rel="noopener noreferrer"
-              >Find the celebration <span aria-hidden="true">↗</span></a
+              >Find the celebration <svg class="button-icon" aria-hidden="true"><use href="#arrow" /></svg></a
             >
           </div>
         </div>
